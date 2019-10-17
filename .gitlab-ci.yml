@@ -1,0 +1,19 @@
+stages:
+  - test
+
+variables:
+  BUILD_VERSION: ${CI_COMMIT_TAG}-${CI_COMMIT_SHORT_SHA}
+# there is no need to do docker build, as docker-compose up builds it up
+# and also runs the test in this case
+# If this is added to the pipeline and on evert merge to the master, the git pipeline should run and build the test image and run the test
+# This will bring up selenium hub chrome node as these images are pulled in docker-compose
+# We could add these separately here into the pipeline and call docker run
+sanity_checks:
+  stage: test
+  image: python:alpine3.10
+  script:
+    - export BROWSER=remote
+    - docker build .
+    - docker-compose up
+  except:
+    - branches
