@@ -18,7 +18,7 @@ Set at config.yml to run it locally
 `env`
 Set to local or docker
 
-Chromedriver was installed using homebrew on Mac and it was added to the $PATH.
-So the path to the chromedriver is not needed to be added to the ChromeOptions
+Chromedriver is installed using homebrew on Mac and it was added to the $PATH.
+So the path to the chromedriver is not required to be added to the ChromeOptions
 On Docker, chrome is a separate node registering to selenium-hub.
 
