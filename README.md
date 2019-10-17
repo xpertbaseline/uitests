@@ -31,3 +31,6 @@ Building the docker image:
 
 Running the tests:
 `docker run -d uitests_temperature_tests`
+
+Need to find a mechanism to validate the gitlab-ci.yml file.
+Can be done by installing a runner.
