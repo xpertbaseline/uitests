@@ -1,0 +1,4 @@
+temperature_reading:
+  env: local
+  browser: chrome
+  url: https://www.weerindelft.nl/

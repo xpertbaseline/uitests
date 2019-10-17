@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+  selenium-hub:
+    image: selenium/hub
+    container_name: selenium-hub
+    ports:
+      - 4444:4444
+    networks:
+      - selenium_grid
+
+  chrome:
+    image: selenium/node-chrome
+    container_name: selenium-node-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      HUB_HOST: selenium-hub
+      HUB_PORT: 4444
+    links:
+      - selenium-hub
+    networks:
+      - selenium_grid
+    depends_on:
+      - selenium-hub
+
+  temperature_tests:
+    image: uitest_temperature_tests
+    ports:
+      - 4444
+      - 8080
+    environment:
+      BROWSER: remote
+      env: docker
+    container_name: temperature_tests
+    depends_on:
+      - selenium-hub
+      - chrome
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python3", "-u", "HoeWarmIsHetInDelft.py"]
+    volumes:
+      - .:/opt
+    links:
+      - chrome
+    networks:
+      - selenium_grid
+
+networks:
+  selenium_grid:
+    driver: bridge
+
