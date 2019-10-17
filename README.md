@@ -27,10 +27,10 @@ If selenium-hub and chrome are already running and there are changes to the test
 To test only the changes we can re-build the test project alone and run the tests.
 
 Building the docker image:
-`docker build -t uitests_temperature_tests .`
+`docker build -t uitest_temperature_tests .`
 
 Running the tests:
-`docker run -d uitests_temperature_tests`
+`docker run -d uitest_temperature_tests`
 
 Need to find a mechanism to validate the gitlab-ci.yml file.
 Can be done by installing a runner.
